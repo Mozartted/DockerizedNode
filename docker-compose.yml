@@ -5,5 +5,21 @@ services:
     image: mozartted/base-node:latest
     ports:
       - "4000:4500"
+    links:
+      - mongo
+    networks: 
+      - backend
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./data:/data/db
+    networks: 
+      - backend
+networks:
+  backend:
+    driver: "bridge"
+      
 
 
